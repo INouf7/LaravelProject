@@ -1,4 +1,7 @@
 <x-jet-form-section submit="updateProfileInformation">
+
+
+
     <x-slot name="title">
         {{ __('Profile Information') }}
     </x-slot>
@@ -51,6 +54,14 @@
                 <x-jet-input-error for="photo" class="mt-2" />
             </div>
         @endif
+
+    <!-- Role -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="role" value="{{ __('Role') }}" />
+            <x-jet-input id="role" type="text" class="mt-1 block w-full" wire:model.defer="state.role" autocomplete="name" disabled/>
+            <x-jet-input-error for="role" class="mt-2" />
+        </div>
+
 
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">

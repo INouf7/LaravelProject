@@ -17,16 +17,20 @@
                     </x-jet-nav-link>
                 </div>
             </div>
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <div
-                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition">
-                    @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                        <x-jet-dropdown-link href="{{ route('teams.create') }}">
-                            {{ __('Create New Team') }}
-                        </x-jet-dropdown-link>
-                    @endcan
+
+            @if(Auth::user()->isManager())
+                <div class="hidden sm:flex sm:items-center sm:ml-6">
+                    <div
+                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition">
+                        @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
+                            <x-jet-dropdown-link href="{{ route('teams.create') }}">
+                                {{ __('Create New Team') }}
+                            </x-jet-dropdown-link>
+                        @endcan
+                    </div>
                 </div>
-            </div>
+            @endif
+
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Teams Dropdown -->
@@ -217,12 +221,7 @@
                         {{ __('Team Settings') }}
                     </x-jet-responsive-nav-link>
 
-                    @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                        <x-jet-responsive-nav-link href="{{ route('teams.create') }}"
-                                                   :active="request()->routeIs('teams.create')">
-                            {{ __('Create New Team') }}
-                        </x-jet-responsive-nav-link>
-                    @endcan
+
 
                     <div class="border-t border-gray-200"></div>
 

@@ -26,7 +26,7 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','role',
     ];
 
     /**
@@ -61,5 +61,9 @@ class User extends Authenticatable
 
     public function isMemberOfATeam(){
         return $this->allTeams()->count()>0;
+    }
+    public function isManager(): bool
+    {
+        return $this->attributes['role']==="Project Manager";
     }
 }
