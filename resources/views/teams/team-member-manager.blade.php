@@ -1,256 +1,694 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<style>
+
+
+    /* ==========================================================================
+       #FONT
+       ========================================================================== */
+    .font-robo {
+        font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
+    }
+
+    .font-poppins {
+        font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
+    }
+
+    .font-opensans {
+        font-family: "Open Sans", "Arial", "Helvetica Neue", sans-serif;
+    }
+
+    /* ==========================================================================
+       #GRID
+       ========================================================================== */
+    .row {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+
+    .row .col-2:last-child .input-group-desc {
+        margin-bottom: 0;
+    }
+
+    .row-space {
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -moz-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+    }
+
+    .row-refine {
+        margin: 0 -15px;
+    }
+
+    .row-refine .col-3 .input-group-desc,
+    .row-refine .col-9 .input-group-desc {
+        margin-bottom: 0;
+    }
+
+    .col-2 {
+        width: -webkit-calc((100% - 30px) / 2);
+        width: -moz-calc((100% - 30px) / 2);
+        width: calc((100% - 30px) / 2);
+    }
+
+    @media (max-width: 767px) {
+        .col-2 {
+            width: 100%;
+        }
+    }
+
+    .form-row {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-align: start;
+        -webkit-align-items: flex-start;
+        -moz-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        padding: 24px 55px;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .form-row .name {
+        width: 188px;
+        color: #333;
+        font-size: 15px;
+        font-weight: 700;
+        margin-top: 11px;
+    }
+
+    .form-row .value {
+        width: -webkit-calc(100% - 188px);
+        width: -moz-calc(100% - 188px);
+        width: calc(100% - 188px);
+    }
+
+    @media (max-width: 767px) {
+        .form-row {
+            display: block;
+            padding: 24px 30px;
+        }
+        .form-row .name,
+        .form-row .value {
+            display: block;
+            width: 100%;
+        }
+        .form-row .name {
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+    }
+
+    /* ==========================================================================
+       #BOX-SIZING
+       ========================================================================== */
+    /**
+     * More sensible default box-sizing:
+     * css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
+     */
+    html {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    *, *:before, *:after {
+        -webkit-box-sizing: inherit;
+        -moz-box-sizing: inherit;
+        box-sizing: inherit;
+    }
+
+    /* ==========================================================================
+       #RESET
+       ========================================================================== */
+    /**
+     * A very simple reset that sits on top of Normalize.css.
+     */
+    body,
+    h1, h2, h3, h4, h5, h6,
+    blockquote, p, pre,
+    dl, dd, ol, ul,
+    figure,
+    hr,
+    fieldset, legend {
+        margin: 0;
+        padding: 0;
+    }
+
+    /**
+     * Remove trailing margins from nested lists.
+     */
+    li > ol,
+    li > ul {
+        margin-bottom: 0;
+    }
+
+    /**
+     * Remove default table spacing.
+     */
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    /**
+     * 1. Reset Chrome and Firefox behaviour which sets a `min-width: min-content;`
+     *    on fieldsets.
+     */
+    fieldset {
+        min-width: 0;
+        /* [1] */
+        border: 0;
+    }
+
+    button {
+        outline: none;
+        background: none;
+        border: none;
+    }
+
+    /* ==========================================================================
+       #PAGE WRAPPER
+       ========================================================================== */
+    .page-wrapper {
+        min-height: 100vh;
+    }
+
+    body {
+        font-family: "Open Sans", "Arial", "Helvetica Neue", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 400;
+    }
+
+    h1 {
+        font-size: 36px;
+    }
+
+    h2 {
+        font-size: 30px;
+    }
+
+    h3 {
+        font-size: 24px;
+    }
+
+    h4 {
+        font-size: 18px;
+    }
+
+    h5 {
+        font-size: 15px;
+    }
+
+    h6 {
+        font-size: 13px;
+    }
+
+    /* ==========================================================================
+       #BACKGROUND
+       ========================================================================== */
+    .bg-blue {
+        background: #2c6ed5;
+    }
+
+    .bg-red {
+        background: #fa4251;
+    }
+
+    .bg-dark {
+        background: #1a1a1a;
+    }
+
+    .bg-gra-01 {
+        background: -webkit-gradient(linear, left bottom, left top, from(#fbc2eb), to(#a18cd1));
+        background: -webkit-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
+        background: -moz-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
+        background: -o-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
+        background: linear-gradient(to top, #fbc2eb 0%, #a18cd1 100%);
+    }
+
+    .bg-gra-02 {
+        background: -webkit-gradient(linear, left bottom, right top, from(#fc2c77), to(#6c4079));
+        background: -webkit-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
+        background: -moz-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
+        background: -o-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
+        background: linear-gradient(to top right, #fc2c77 0%, #6c4079 100%);
+    }
+
+    .bg-gra-03 {
+        background: -webkit-gradient(linear, left bottom, right top, from(#08aeea), to(#b721ff));
+        background: -webkit-linear-gradient(bottom left, #08aeea 0%, #b721ff 100%);
+        background: -moz-linear-gradient(bottom left, #08aeea 0%, #b721ff 100%);
+        background: -o-linear-gradient(bottom left, #08aeea 0%, #b721ff 100%);
+        background: linear-gradient(to top right, #08aeea 0%, #b721ff 100%);
+    }
+
+    /* ==========================================================================
+       #SPACING
+       ========================================================================== */
+    .p-t-100 {
+        padding-top: 100px;
+    }
+
+    .p-t-130 {
+        padding-top: 130px;
+    }
+
+    .p-t-180 {
+        padding-top: 180px;
+    }
+
+    .p-t-45 {
+        padding-top: 45px;
+    }
+
+    .p-t-20 {
+        padding-top: 20px;
+    }
+
+    .p-t-15 {
+        padding-top: 15px;
+    }
+
+    .p-t-10 {
+        padding-top: 10px;
+    }
+
+    .p-t-30 {
+        padding-top: 30px;
+    }
+
+    .p-b-100 {
+        padding-bottom: 100px;
+    }
+
+    .p-b-50 {
+        padding-bottom: 50px;
+    }
+
+    .m-r-45 {
+        margin-right: 45px;
+    }
+
+    .m-r-55 {
+        margin-right: 55px;
+    }
+
+    .m-b-55 {
+        margin-bottom: 55px;
+    }
+
+    /* ==========================================================================
+       #WRAPPER
+       ========================================================================== */
+    .wrapper {
+        margin: 0 auto;
+    }
+
+    .wrapper--w960 {
+        max-width: 960px;
+    }
+
+    .wrapper--w900 {
+        max-width: 900px;
+    }
+
+    .wrapper--w790 {
+        max-width: 790px;
+    }
+
+    .wrapper--w780 {
+        max-width: 780px;
+    }
+
+    .wrapper--w680 {
+        max-width: 680px;
+    }
+
+    /* ==========================================================================
+       #BUTTON
+       ========================================================================== */
+    .btn {
+        display: inline-block;
+        line-height: 50px;
+        padding: 0 30px;
+        -webkit-transition: all 0.4s ease;
+        -o-transition: all 0.4s ease;
+        -moz-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+        cursor: pointer;
+        font-size: 15px;
+        text-transform: capitalize;
+        font-weight: 700;
+        color: #fff;
+        font-family: inherit;
+    }
+
+    .btn--radius {
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
+
+    .btn--radius-2 {
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+    }
+
+    .btn--pill {
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+    }
+
+    .btn--green {
+        background: #57b846;
+    }
+
+    .btn--green:hover {
+        background: #4dae3c;
+    }
+
+    .btn--blue {
+        background: #4272d7;
+    }
+
+    .btn--blue:hover {
+        background: #3868cd;
+    }
+
+    .btn--blue-2 {
+        background: #2c6ed5;
+    }
+
+    .btn--blue-2:hover {
+        background: #185ac1;
+    }
+
+    .btn--red {
+        background: #ff4b5a;
+    }
+
+    .btn--red:hover {
+        background: #eb3746;
+    }
+
+    /* ==========================================================================
+       #DATE PICKER
+       ========================================================================== */
+    td.active {
+        background-color: #2c6ed5;
+    }
+
+    input[type="date" i] {
+        padding: 14px;
+    }
+
+    .table-condensed td, .table-condensed th {
+        font-size: 14px;
+        font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
+        font-weight: 400;
+    }
+
+    .daterangepicker td {
+        width: 40px;
+        height: 30px;
+    }
+
+    .daterangepicker {
+        border: none;
+        -webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+        -moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+        box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+        display: none;
+        border: 1px solid #e0e0e0;
+        margin-top: 5px;
+    }
+
+    .daterangepicker::after, .daterangepicker::before {
+        display: none;
+    }
+
+    .daterangepicker thead tr th {
+        padding: 10px 0;
+    }
+
+    .daterangepicker .table-condensed th select {
+        border: 1px solid #ccc;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        font-size: 14px;
+        padding: 5px;
+        outline: none;
+    }
+
+    /* ==========================================================================
+       #FORM
+       ========================================================================== */
+    input,
+    textarea {
+        outline: none;
+        margin: 0;
+        border: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        width: 100%;
+        font-size: 14px;
+        font-family: inherit;
+    }
+
+    textarea {
+        resize: none;
+    }
+
+    .input-group {
+        position: relative;
+        margin: 0;
+    }
+
+    .input--style-6,
+    .textarea--style-6 {
+        background: transparent;
+        line-height: 38px;
+        border: 1px solid #cccccc;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        color: #666;
+        font-size: 15px;
+        -webkit-transition: all 0.4s ease;
+        -o-transition: all 0.4s ease;
+        -moz-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+        padding: 0 20px;
+    }
+
+    .input--style-6::-webkit-input-placeholder,
+    .textarea--style-6::-webkit-input-placeholder {
+        /* WebKit, Blink, Edge */
+        color: #999;
+    }
+
+    .input--style-6:-moz-placeholder,
+    .textarea--style-6:-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: #999;
+        opacity: 1;
+    }
+
+    .input--style-6::-moz-placeholder,
+    .textarea--style-6::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: #999;
+        opacity: 1;
+    }
+
+    .input--style-6:-ms-input-placeholder,
+    .textarea--style-6:-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: #999;
+    }
+
+    .input--style-6:-ms-input-placeholder,
+    .textarea--style-6:-ms-input-placeholder {
+        /* Microsoft Edge */
+        color: #999;
+    }
+
+    .input--style-6:focus,
+    .textarea--style-6:focus {
+        -webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+        -moz-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+        box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+        -webkit-transform: translateY(-3px);
+        -moz-transform: translateY(-3px);
+        -ms-transform: translateY(-3px);
+        -o-transform: translateY(-3px);
+        transform: translateY(-3px);
+    }
+
+    .textarea--style-6 {
+        line-height: 1.2;
+        min-height: 120px;
+        padding: 10px 20px;
+    }
+
+    .label--desc {
+        font-size: 13px;
+        color: #999;
+        margin-top: 10px;
+    }
+
+    @media (max-width: 767px) {
+        .label--desc {
+            margin-top: 14px;
+        }
+    }
+
+    .input-file {
+        display: none;
+    }
+
+    .input-file + label {
+        font-size: 15px;
+        color: #fff;
+        color: white;
+        line-height: 40px;
+        background-color: #666666;
+        padding: 0 20px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        display: inline-block;
+        margin-right: 15px;
+        -webkit-transition: all 0.4s ease;
+        -o-transition: all 0.4s ease;
+        -moz-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+        cursor: pointer;
+    }
+
+    .input-file:focus + label,
+    .input-file + label:hover {
+        background: #1b1b1b;
+    }
+
+    .input-file__info {
+        font-size: 15px;
+        color: #666;
+    }
+
+    @media (max-width: 767px) {
+        .input-file__info {
+            display: block;
+            margin-top: 6px;
+        }
+    }
+
+
+    /* ==========================================================================
+       #TITLE
+       ========================================================================== */
+    .title {
+        font-size: 36px;
+        font-weight: 700;
+        text-align: left;
+        color: #fff;
+        margin-bottom: 24px;
+    }
+
+    @media (max-width: 767px) {
+        .title {
+            padding: 0 15px;
+        }
+    }
+
+    /* ==========================================================================
+       #CARD
+       ========================================================================== */
+    .card {
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        background: #fff;
+    }
+
+    .card-6 {
+        background: transparent;
+    }
+
+    .card-6 .card-heading {
+        background: transparent;
+    }
+
+    .card-6 .card-body {
+        background: #fff;
+        position: relative;
+        border: 1px solid #e5e5e5;
+        border-bottom: none;
+        padding: 30px 0;
+        padding-bottom: 0;
+        -webkit-border-top-left-radius: 3px;
+        -moz-border-radius-topleft: 3px;
+        border-top-left-radius: 3px;
+        -webkit-border-top-right-radius: 3px;
+        -moz-border-radius-topright: 3px;
+        border-top-right-radius: 3px;
+    }
+
+</style>
 <div>
-    @if (Gate::check('addTeamMember', $team))
-        <x-jet-section-border />
 
-        <!-- Add Team Member -->
-        <div class="mt-10 sm:mt-0">
-            <x-jet-form-section submit="addTeamMember">
-                <x-slot name="title">
-                    {{ __('Add Team Member') }}
-                </x-slot>
+       <div class="card-body " style="width: 65%;margin-left: 34%; background-color: white; margin-top: 2%; box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.5); border-radius: 2px">
 
-                <x-slot name="description">
-                    {{ __('Add a new team member to your team, allowing them to collaborate with you.') }}
-                </x-slot>
+           <form action="{{ route('project.add_team') }}" method="post">
+               @csrf
+               <div class="form-row">
+                   <input hidden name="id" value={{$team->id}}>
+                   <div class="email">Email</div>
+                   <div class="value">
+                       <input style="margin-left: 32%" class="input-group input--style-6 mt-1 block w-full w-60" type="email" name="email" placeholder="email@gmail.com">
+                   </div>
+               </div>
+               <div class="form-row">
+                   <div class="name">User Type</div>
+                   <div class="value">
+                       <div class="input-group">
+                           <select name="type" id="type" type="text" class="mt-1 block w-full w-60">
+                               <option value="admin">Project Leader</option>
+                               <option value="editor">user</option>
+                           </select>
+                       </div>
+                   </div>
 
-                <x-slot name="form">
-                    <div class="col-span-6">
-                        <div class="max-w-xl text-sm text-gray-600">
-                            {{ __('Please provide the email address of the person you would like to add to this team.') }}
-                        </div>
-                    </div>
+               </div>
+               <input type="submit" class="btn btn-primary ml-12 mt-6" style="width: 200px" value="Add">
+           </form>
+       </div>
 
-                    <!-- Member Email -->
-                    <div class="col-span-6 sm:col-span-4">
-                        <x-jet-label for="email" value="{{ __('Email') }}" />
-                        <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="addTeamMemberForm.email" />
-                        <x-jet-input-error for="email" class="mt-2" />
-                    </div>
-
-                    <!-- Role -->
-                    @if (count($this->roles) > 0)
-                        <div class="col-span-6 lg:col-span-4">
-                            <x-jet-label for="role" value="{{ __('Role') }}" />
-                            <x-jet-input-error for="role" class="mt-2" />
-
-                            <div class="relative z-0 mt-1 border border-gray-200 rounded-lg cursor-pointer">
-                                @foreach ($this->roles as $index => $role)
-                                    <button type="button" class="relative px-4 py-3 inline-flex w-full rounded-lg focus:z-10 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 {{ $index > 0 ? 'border-t border-gray-200 rounded-t-none' : '' }} {{ ! $loop->last ? 'rounded-b-none' : '' }}"
-                                                    wire:click="$set('addTeamMemberForm.role', '{{ $role->key }}')">
-                                        <div class="{{ isset($addTeamMemberForm['role']) && $addTeamMemberForm['role'] !== $role->key ? 'opacity-50' : '' }}">
-                                            <!-- Role Name -->
-                                            <div class="flex items-center">
-                                                <div class="text-sm text-gray-600 {{ $addTeamMemberForm['role'] == $role->key ? 'font-semibold' : '' }}">
-                                                    {{ $role->name }}
-                                                </div>
-
-                                                @if ($addTeamMemberForm['role'] == $role->key)
-                                                    <svg class="ml-2 h-5 w-5 text-green-400" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                                @endif
-                                            </div>
-
-                                            <!-- Role Description -->
-                                            <div class="mt-2 text-xs text-gray-600 text-left">
-                                                {{ $role->description }}
-                                            </div>
-                                        </div>
-                                    </button>
-                                @endforeach
-                            </div>
-                        </div>
-                    @endif
-                </x-slot>
-
-                <x-slot name="actions">
-                    <x-jet-action-message class="mr-3" on="saved">
-                        {{ __('Added.') }}
-                    </x-jet-action-message>
-
-                    <x-jet-button>
-                        {{ __('Add') }}
-                    </x-jet-button>
-                </x-slot>
-            </x-jet-form-section>
-        </div>
-    @endif
-
-    @if ($team->teamInvitations->isNotEmpty() && Gate::check('addTeamMember', $team))
-        <x-jet-section-border />
-
-        <!-- Team Member Invitations -->
-        <div class="mt-10 sm:mt-0">
-            <x-jet-action-section>
-                <x-slot name="title">
-                    {{ __('Pending Team Invitations') }}
-                </x-slot>
-
-                <x-slot name="description">
-                    {{ __('These people have been invited to your team and have been sent an invitation email. They may join the team by accepting the email invitation.') }}
-                </x-slot>
-
-                <x-slot name="content">
-                    <div class="space-y-6">
-                        @foreach ($team->teamInvitations as $invitation)
-                            <div class="flex items-center justify-between">
-                                <div class="text-gray-600">{{ $invitation->email }}</div>
-
-                                <div class="flex items-center">
-                                    @if (Gate::check('removeTeamMember', $team))
-                                        <!-- Cancel Team Invitation -->
-                                        <button class="cursor-pointer ml-6 text-sm text-red-500 focus:outline-none"
-                                                            wire:click="cancelTeamInvitation({{ $invitation->id }})">
-                                            {{ __('Cancel') }}
-                                        </button>
-                                    @endif
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </x-slot>
-            </x-jet-action-section>
-        </div>
-    @endif
-
-    @if ($team->users->isNotEmpty())
-        <x-jet-section-border />
-
-        <!-- Manage Team Members -->
-        <div class="mt-10 sm:mt-0">
-            <x-jet-action-section>
-                <x-slot name="title">
-                    {{ __('Team Members') }}
-                </x-slot>
-
-                <x-slot name="description">
-                    {{ __('All of the people that are part of this team.') }}
-                </x-slot>
-
-                <!-- Team Member List -->
-                <x-slot name="content">
-                    <div class="space-y-6">
-                        @foreach ($team->users->sortBy('name') as $user)
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <img class="w-8 h-8 rounded-full" src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}">
-                                    <div class="ml-4">{{ $user->name }}</div>
-                                </div>
-
-                                <div class="flex items-center">
-                                    <!-- Manage Team Member Role -->
-                                    @if (Gate::check('addTeamMember', $team) && Laravel\Jetstream\Jetstream::hasRoles())
-                                        <button class="ml-2 text-sm text-gray-400 underline" wire:click="manageRole('{{ $user->id }}')">
-                                            {{ Laravel\Jetstream\Jetstream::findRole($user->membership->role)->name }}
-                                        </button>
-                                    @elseif (Laravel\Jetstream\Jetstream::hasRoles())
-                                        <div class="ml-2 text-sm text-gray-400">
-                                            {{ Laravel\Jetstream\Jetstream::findRole($user->membership->role)->name }}
-                                        </div>
-                                    @endif
-
-                                    <!-- Leave Team -->
-                                    @if ($this->user->id === $user->id)
-                                        <button class="cursor-pointer ml-6 text-sm text-red-500" wire:click="$toggle('confirmingLeavingTeam')">
-                                            {{ __('Leave') }}
-                                        </button>
-
-                                    <!-- Remove Team Member -->
-                                    @elseif (Gate::check('removeTeamMember', $team))
-                                        <button class="cursor-pointer ml-6 text-sm text-red-500" wire:click="confirmTeamMemberRemoval('{{ $user->id }}')">
-                                            {{ __('Remove') }}
-                                        </button>
-                                    @endif
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </x-slot>
-            </x-jet-action-section>
-        </div>
-    @endif
-
-    <!-- Role Management Modal -->
-    <x-jet-dialog-modal wire:model="currentlyManagingRole">
-        <x-slot name="title">
-            {{ __('Manage Role') }}
-        </x-slot>
-
-        <x-slot name="content">
-            <div class="relative z-0 mt-1 border border-gray-200 rounded-lg cursor-pointer">
-                @foreach ($this->roles as $index => $role)
-                    <button type="button" class="relative px-4 py-3 inline-flex w-full rounded-lg focus:z-10 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 {{ $index > 0 ? 'border-t border-gray-200 rounded-t-none' : '' }} {{ ! $loop->last ? 'rounded-b-none' : '' }}"
-                                    wire:click="$set('currentRole', '{{ $role->key }}')">
-                        <div class="{{ $currentRole !== $role->key ? 'opacity-50' : '' }}">
-                            <!-- Role Name -->
-                            <div class="flex items-center">
-                                <div class="text-sm text-gray-600 {{ $currentRole == $role->key ? 'font-semibold' : '' }}">
-                                    {{ $role->name }}
-                                </div>
-
-                                @if ($currentRole == $role->key)
-                                    <svg class="ml-2 h-5 w-5 text-green-400" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                @endif
-                            </div>
-
-                            <!-- Role Description -->
-                            <div class="mt-2 text-xs text-gray-600">
-                                {{ $role->description }}
-                            </div>
-                        </div>
-                    </button>
-                @endforeach
-            </div>
-        </x-slot>
-
-        <x-slot name="footer">
-            <x-jet-secondary-button wire:click="stopManagingRole" wire:loading.attr="disabled">
-                {{ __('Cancel') }}
-            </x-jet-secondary-button>
-
-            <x-jet-button class="ml-2" wire:click="updateRole" wire:loading.attr="disabled">
-                {{ __('Save') }}
-            </x-jet-button>
-        </x-slot>
-    </x-jet-dialog-modal>
-
-    <!-- Leave Team Confirmation Modal -->
-    <x-jet-confirmation-modal wire:model="confirmingLeavingTeam">
-        <x-slot name="title">
-            {{ __('Leave Team') }}
-        </x-slot>
-
-        <x-slot name="content">
-            {{ __('Are you sure you would like to leave this team?') }}
-        </x-slot>
-
-        <x-slot name="footer">
-            <x-jet-secondary-button wire:click="$toggle('confirmingLeavingTeam')" wire:loading.attr="disabled">
-                {{ __('Cancel') }}
-            </x-jet-secondary-button>
-
-            <x-jet-danger-button class="ml-2" wire:click="leaveTeam" wire:loading.attr="disabled">
-                {{ __('Leave') }}
-            </x-jet-danger-button>
-        </x-slot>
-    </x-jet-confirmation-modal>
-
-    <!-- Remove Team Member Confirmation Modal -->
-    <x-jet-confirmation-modal wire:model="confirmingTeamMemberRemoval">
-        <x-slot name="title">
-            {{ __('Remove Team Member') }}
-        </x-slot>
-
-        <x-slot name="content">
-            {{ __('Are you sure you would like to remove this person from the team?') }}
-        </x-slot>
-
-        <x-slot name="footer">
-            <x-jet-secondary-button wire:click="$toggle('confirmingTeamMemberRemoval')" wire:loading.attr="disabled">
-                {{ __('Cancel') }}
-            </x-jet-secondary-button>
-
-            <x-jet-danger-button class="ml-2" wire:click="removeTeamMember" wire:loading.attr="disabled">
-                {{ __('Remove') }}
-            </x-jet-danger-button>
-        </x-slot>
-    </x-jet-confirmation-modal>
 </div>

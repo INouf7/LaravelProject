@@ -6,10 +6,13 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
+use Symfony\Component\Console\Output\ConsoleOutput;
+use Illuminate\Support\Facades\Log;
 
 class User extends Authenticatable
 {
@@ -26,7 +29,7 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name', 'email', 'password','role',
+        'name', 'email', 'password', 'role',
     ];
 
     /**
@@ -59,29 +62,62 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function isMemberOfATeam(){
-        return $this->allTeams()->count()>0;
+    public function isMemberOfATeam()
+    {
+        return $this->allTeams()->count() > 0;
     }
+
     public function isManager(): bool
     {
-        return $this->attributes['role']==="Project Manager";
+        return $this->attributes['role'] === "Project Manager";
     }
-    public function teamByName($name){
+
+    public function teamByName($name)
+    {
         if (!$this->isManager())
             return;
         $teams = $this->allTeams();
-        foreach ($teams as $team){
-            if ($team->attributes['name']===$name)
+        foreach ($teams as $team) {
+            if ($team->attributes['name'] === $name)
                 return $team;
         }
     }
-    public function teamIdByName($name){
+
+    public function teamIdByName($name)
+    {
         if (!$this->isManager())
             return;
         $teams = $this->allTeams();
-        foreach ($teams as $team){
-            if ($team->attributes['name']===$name)
+        foreach ($teams as $team) {
+            if ($team->attributes['name'] === $name)
                 return $team->attributes['id'];
         }
+    }
+
+    public function isAdmin($teamId)
+    {
+        $team = Team::find($teamId);
+        $user_id = auth()->user()->id;
+        $data = DB::table('team_user')->
+        select("role")->whereRaw("team_id = ? and user_id = ?", [$teamId, $user_id])->get();
+        return $data;
+        foreach ($data as $role) {
+
+            return $role === "admin";
+        }
+        return False;
+    }
+
+    public function belongsToProject($project)
+    {
+        $user_id = auth()->user()->id;
+        $data = DB::table('team_user')->
+        select("role")->whereRaw("team_id = ? and user_id = ?;",
+            [ $project->team_id, $user_id])->get();
+
+        foreach ($data as $role) {
+            return True;
+        }
+        return False;
     }
 }

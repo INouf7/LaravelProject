@@ -34,7 +34,7 @@ class Project extends Model
 
     public function team()
     {
-        return $this->belongsTo(Team::class,"team_id","id");
+        return Team::find($this->attributes['team_id']);
     }
 
     public function delete()

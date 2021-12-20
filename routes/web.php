@@ -27,8 +27,19 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/project.create', function
 Route::middleware(['auth:sanctum', 'verified'])->post
 ('/project.create', [ProjectController::class,'create'])->name('project.create');
 
+Route::middleware(['auth:sanctum', 'verified'])->post
+('/project.update', [ProjectController::class,'update'])->name('project.update');
+
+Route::middleware(['auth:sanctum', 'verified'])->post
+('/project.add_team', [ProjectController::class,'add_team'])->name('project.add_team');
+
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard',
     [Dashboard::class,"render"])->name('dashboard');
+
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/teams.showusers',
+    [ProjectController::class,"show_users"])->name('teams.showusers');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('project-delete',[ProjectController::class,'delete'])->name("project-delete");
 Route::middleware(['auth:sanctum', 'verified'])->get('project-edit',[ProjectController::class,'edit'])->name("project-edit");

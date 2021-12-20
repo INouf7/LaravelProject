@@ -23,24 +23,26 @@
                     </tr>
                     </thead>
                     <tbody>
-
                     @foreach($projects as $project)
+                        @if($user->belongsToProject($project))
                         <tr>
                             <td>{!! $project->title !!}</td>
                             <td>{!! $project->type !!}</td>
                             <td>{!! $project->client !!}</td>
                             <td>
                                 <a type="button" href="{{route('project-view', ['id'=>$project->id])}}" class="btn btn-primary"><i class="far fa-eye"></i></a>
+
+                                @if($user->isAdmin($project->team_id))
                                 <a type="button" href="{{route('project-edit', ['id'=>$project->id])}}" class="btn btn-success"><i class="fas fa-edit"></i></a>
                                 <a type="button" onclick="return confirm('Are you sure?')" href="{{route('project-delete', ['id'=>$project->id])}}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                                @endif
                             </td>
                         </tr>
+                        @endif
                     @endforeach
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div>
-
 </x-app-layout>

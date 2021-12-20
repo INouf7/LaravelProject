@@ -670,24 +670,21 @@
             border-top-right-radius: 3px;
         }
 
-
-
     </style>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-5" >
 
-                <<div class="card-body">
+                <div class="card-body">
                     <div class="form-row">
                     <Label class="name" for="team">Edit Team</Label>
                     <a class="btn btn-primary input--style-6 value"  href="{{ route('teams.show', $team->id) }}" id="team" >{{$team->name}}</a>
                     </div>
-
-                    <form action="project-update" method="post">
-
-
+                    <form action="{{ route('project.update') }}" method="post">
+                    @csrf
                     <div class="form-row">
+                        <input hidden name="id" value={{$project->id}}>
                         <div class="name">Title</div>
                         <div class="value">
                             <input class="input--style-6" type="text" name="title" value={{($project->title)}}>
@@ -704,13 +701,16 @@
                             </div>
                         </div>
                     </div>
+                        <div class="form-row">
+                            <div class="name">Client</div>
+                            <div class="value">
+                                <input class="input--style-6" type="text" name="client" value={{($project->client)}}>
+                            </div>
+                        </div>
+
                         <input type="submit" class="btn btn-primary ml-12 mt-6" style="width: 200px" value="Update">
                 </form>
                 </div>
-
-
-
-
             </div>
         </div>
     </div>

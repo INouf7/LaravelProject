@@ -9,6 +9,7 @@ class Dashboard extends Controller
 {
     public function render(){
         $projects = Project::all();
-        return view('dashboard', compact('projects'));
+        $user = auth()->user();
+        return view('dashboard', compact(['user','projects']));
     }
 }

@@ -4,13 +4,13 @@
     </x-slot>
 
     <x-slot name="description">
-        {{ __('The team\'s name and owner information.') }}
+        {{ __('The team\'s name and manager information.') }}
     </x-slot>
 
     <x-slot name="form">
         <!-- Team Owner Information -->
         <div class="col-span-6">
-            <x-jet-label value="{{ __('Team Owner') }}" />
+            <x-jet-label value="{{ __('Team Project Manager') }}" />
 
             <div class="flex items-center mt-2">
                 <img class="w-12 h-12 rounded-full object-cover" src="{{ $team->owner->profile_photo_url }}" alt="{{ $team->owner->name }}">
