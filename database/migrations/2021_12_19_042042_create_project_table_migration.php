@@ -17,6 +17,7 @@ class CreateProjectTableMigration extends Migration
             $table->id();
             $table->string('title');
             $table->foreignId('team_id')->nullable();
+            $table->foreign('team_id')->references('id')->on('teams');
             $table->enum("type", ["Consultancy Project", "Research Grant",]);
             $table->timestamp('start')->nullable();
             $table->timestamp('end')->nullable();

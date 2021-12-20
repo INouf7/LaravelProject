@@ -43,6 +43,4 @@ class Team extends JetstreamTeam
         'deleted' => TeamDeleted::class,
     ];
 
-
-
 }

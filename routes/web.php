@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\CreateProject;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\Dashboard;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,11 +25,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/project.create', function
 
 
 Route::middleware(['auth:sanctum', 'verified'])->post
-('/project.create', [CreateProject::class,'create'])->name('project.create');
+('/project.create', [ProjectController::class,'create'])->name('project.create');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard',
+    [Dashboard::class,"render"])->name('dashboard');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('project-delete',[ProjectController::class,'delete'])->name("project-delete");
+Route::middleware(['auth:sanctum', 'verified'])->get('project-edit',[ProjectController::class,'edit'])->name("project-edit");
+Route::middleware(['auth:sanctum', 'verified'])->get('project-view',[ProjectController::class,'view'])->name("project-view");
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
 
