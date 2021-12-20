@@ -29,6 +29,7 @@ class Team extends JetstreamTeam
     protected $fillable = [
         'name',
         'personal_team',
+        'team_id',
     ];
 
     /**
@@ -41,4 +42,7 @@ class Team extends JetstreamTeam
         'updated' => TeamUpdated::class,
         'deleted' => TeamDeleted::class,
     ];
+
+
+
 }

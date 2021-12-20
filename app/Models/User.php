@@ -66,4 +66,22 @@ class User extends Authenticatable
     {
         return $this->attributes['role']==="Project Manager";
     }
+    public function teamByName($name){
+        if (!$this->isManager())
+            return;
+        $teams = $this->allTeams();
+        foreach ($teams as $team){
+            if ($team->attributes['name']===$name)
+                return $team;
+        }
+    }
+    public function teamIdByName($name){
+        if (!$this->isManager())
+            return;
+        $teams = $this->allTeams();
+        foreach ($teams as $team){
+            if ($team->attributes['name']===$name)
+                return $team->attributes['id'];
+        }
+    }
 }
